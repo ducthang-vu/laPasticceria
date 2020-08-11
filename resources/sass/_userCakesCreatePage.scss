@@ -1,0 +1,33 @@
+.user-cakes-create-page {
+    a {
+        text-decoration: none;
+        cursor: pointer;
+        color: black;
+
+            &:active,
+            &:visited {
+                color: black;
+        }
+    }
+
+    .page-title {
+        position: relative;
+        a {
+            position: absolute;
+            right: 2%;
+        }
+    }
+
+    .form-heading {
+        font-size: 150%;
+        font-weight: bold;
+    }
+
+    .form {
+        .form-group-flex {
+            input {
+                width: 50px;
+            }
+        }
+    }
+}

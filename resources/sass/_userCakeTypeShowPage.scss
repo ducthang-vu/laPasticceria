@@ -1,0 +1,17 @@
+.user-cakeType-show-page {
+    .page-content__show {
+        justify-content: center;
+        align-items: center;
+
+        & >* {
+            margin: 15px;
+        }
+        .page-content__show__igm-wrapper {
+            img {
+                width: 500px;
+                height: 350px;
+                object-fit: cover;
+            }
+        }
+    }
+}
