@@ -1,5 +1,5 @@
 # laPasticceria
-la Pasticceria implements the following:
+la Pasticceria è un'applicazione che implementa le seguenti istruzioni:
 > La pasticceria vende dolci che hanno un nome ed un prezzo. Ogni dolce è composto da una lista di ingredienti. Opzionale: indicare di ogni ingrediente quantità e unità di misura.
 Opzionale: La gestione della pasticceria è in mano a Luana e Maria che vogliono avere il proprio account per poter accedere all'area di backoffice tramite email e password.
 Nell’area di backoffice si possono gestire (CRUD) i dolci e metterli in vendita con una certa disponibilità (esempio: 3 torte paradiso in vendita). I dolci in vendita invecchiano ed in base al tempo trascorso dalla loro messa in vendita hanno prezzi diversi: primo giorno prezzo pieno, secondo giorno costano l’80%, il terzo giorno il 20%. Il quarto giorno non sono commestibili e devono essere ritirati dalla vendita.
@@ -9,8 +9,8 @@ Opzionale: andando nella pagina del dettaglio del dolce (o tramite overlayer), s
 gli ingredienti indicati dalla ricetta.
 
 
-## Minimum Requirements
-laPasticceria is based on the Laravel Php Framework.
+## Requisiti minimi
+laPasticceria è basato sul framework Php **Laravel**. 
 
 Composer 1.10.7
 PHP 7.2.5
@@ -18,8 +18,8 @@ MySQL 10.4.11
 Node.js 13.12.0
 
 
-## Usage
-Install all modules:
+## Uso
+Installa dapprima i moduli necessari:
 
 ```
 composer install
@@ -29,18 +29,17 @@ composer install
 npm install
 ```
 
-Create a .env file, following the the .env.example file in the root directory. In particular set the following for database connection.
+Crea il file .env, seguendo l'esempio fornito da .env.example (si trova nella cartella root). Di particolare importanza i seguenti parametri:
 
 ```
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=root
+DB_HOST=
+DB_PORT=
+DB_DATABASE=
+DB_USERNAME=
 DB_PASSWORD=
 ```
-Then run:
+
+Lancia i seguenti comandi:
 ```
 php artisan key:generate 
  ```
@@ -53,26 +52,59 @@ php artisan serve
 npm run watch
  ```
 
-Then run migrations and seeding:
+
+Esegui le migrazioni e il seeding:
 
  ```
 php artisan migrate:fresh --seed
  ```
 
-Run again the last command whenever necessary. However do check that the folder \storage\public\imagesSeeding contains all the images which are also present in \imagesSeeding folder (in the root folder): if necessary you can copy/paste the latter in \storage\public.
+Puoi eseguire quest'ultimo comando più volte; è importante però che le immagini salvate in storage\public\imagesSeeding siano le stesse che si trovano in  imagesSeeding (cartella nella root del progetto). In caso contrario, puoi copiare le foto dall'ultima cartella e incollarle nelle prime.
 
-The seeding will create two user: Maria and Laura. You can access their account using: maria@mail.com or laura@mail.com, and using 'prova' (no quotes) as password.
+Il seeding crea due utenti: Maria and Laura. Puoi accedere a entrambe le aree private usando come username: maria@mail.com o laura@mail.com, e 'prova' (senza virgolette) come password.
+
+Infine, facendo accesso all'area privata, nella home dell'area privata (url: /user) potrai consultare ulteriori istruzioni di navigazione.
 
 
-## Features
-The application has a unique homepage, mostly built with the Vue.js libary. 
-A public Api (url: api/cake_type) is used to fetch the data.
+## Caratteristiche
+L'applicazione ha un'unica homepage che può essere visitato da utenti registrati e non registrati.
 
-Authenticated user can access their personal accounts and perform CRUD operations. Registration of new users is not possible.
+L'homepage è stata costruita principalmente usando il framework JavaScript Vue.js.
+
+Al caricamento della pagina, i dati sono reperiti con una chiamata Ajax attraverso un API pubblica all'url: api/cake_type.
+
+Nell'homepage, sono mostrate le varie tipologie di dolci con il proprio prezzo e quantità. Per ogni tipologia di dolce è mostrato il prezzo più basso (cioè della singola torta più vecchia). Le torte scadute (più vecchie di tre giorni) non sono invece computate.
+
+L'utente autenticato, può, facendo accesso all'area privata vedere per ogni tipo di torta la quantità totale in vendita, la quantità creata nelle ultime 24, 48 e 72 ore con il relativo prezzo.
+Gli utenti autenticati possono inoltre effettuare le classiche operazioni CRUD facendo accesso all'area privata. 
+
+Non è prevista la registrazione di nuovi utenti.
 
 ### CRUD ###
-The application allows registered users to manage the following resources with CRUD functions:
-- ingredient (not update)
-- cake_type 
-- cake (not update)
+L'applicazione permette di eseguire operazioni CRUD per le seguenti risorse:
+- **ingredients** (ingredienti),
+- **cake_types** (ricette), e
+- **cakes** (dolci).
 
+Ciascuna risora ha una sua tabella nel database col proprio nome.
+Fra ingredienti e ricette vi è una relazione Many-to-Many (tabella pivot: **cake_types_ingredients**)
+Fra ricette e torte vi è una relazione One-to-Many.
+
+Per gli ingredienti e per le torte non è previsto l'operazione **update**. 
+Un ingrediente non può essere eliminato finché non sono state eliminate tutte le ricette che ne fanno uso, mentre non è possibile creare o modificare una ricetta in modo che non abbia almeno un ingrediente. 
+L'eliminazione di una ricetta comporta l'eliminazione di tutte le torte relative.
+
+###
+Usa:
+ ```
+php artisan route:list
+ ```
+
+
+per ottenere la lista di tutte le rotte, con i controller di riferimento e il tipo di richiesta eseguito. 
+
+I model sono salvati in nella cartella app.
+
+I controller si trovano in app\Http\Controllers. I controller dentro la cartella User gestiscono le rotte che richiedono l'autenticazione dell'utente.
+
+Per le migrazioni e i seeding, consultare la cartella database.
