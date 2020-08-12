@@ -52,7 +52,7 @@ class IngredientController extends Controller
     public function destroy(Ingredient $ingredient)
     {
         if ($ingredient->cakeTypes->isNotEmpty()) {
-            return back()->withErrors("L'ingrediente " . $ingredient->name . " è usato in alcune ricette. Impossibile procedere con l'eliminazione");
+            return back()->withErrors("L'ingrediente " . $ingredient->name . " è usato in alcune ricette. Impossibile procedere con l'eliminazione.");
         }
 
         $ingedientName = $ingredient->name;

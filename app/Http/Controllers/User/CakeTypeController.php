@@ -11,6 +11,25 @@ use Illuminate\Validation\Rule;
 
 class CakeTypeController extends Controller
 {
+    /* UTILITIES */
+
+    /**
+     * Verify that a request contains at least one ingerdient.
+     *
+     */
+    private function verityIngredients(Request $request) {
+        $ingredientsSlug = Ingredient::getAllNamesSlug();
+        $filtered =  array_filter(
+            $request->all(),
+            function ($key) use ($ingredientsSlug ) {
+                return in_array($key, $ingredientsSlug );
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+        $totalIngredients = array_reduce($filtered, function($a, $b) {return $a + $b;});
+        return boolval($totalIngredients);
+    }
+
     private function searchCakeTypebySlug($slug) {
         return Cake_type::where('slug', $slug)->firstOrFail();
     }
@@ -61,6 +80,10 @@ class CakeTypeController extends Controller
     public function store(Request $request)
     {
         $request->validate($this->validateRules());
+        if (!$this->verityIngredients($request)) {
+            return back()->withErrors('Non puoi creare ricette senza ingredienti');
+        }
+
         $data = $request->all();
 
         $newCakeType = new Cake_type();
@@ -116,6 +139,10 @@ class CakeTypeController extends Controller
     {
         $cakeType = $this->searchCakeTypebySlug($slug);
         $request->validate($this->validateRules($cakeType->id));
+        if (!$this->verityIngredients($request)) {
+            return back()->withErrors('Non puoi lasciare una ricetta senza ingredienti');
+        }
+
         $data = $request->all();
 
         if (isset($data['image'])) {

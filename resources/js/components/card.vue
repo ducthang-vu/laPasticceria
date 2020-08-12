@@ -4,7 +4,7 @@
         <div class="layover text-center">
             <div>
                 <h3 class="layover__cakeName">{{ name }}</h3>
-                <p class="layover__price">{{ currentPrice }} €</p>
+                <p class="layover__price">{{ currentPrice }}</p>
             </div>
         </div>
         <discountRibbon v-if="isDiscounted" ></discountRibbon>
@@ -24,21 +24,33 @@ export default {
             }
         },
         data() {
-            const { name, currentPrice, standardPrice, image } = this.props
+            const { name, currentPrice, quantity, standardPrice, image } = this.props
             return {
                 name: this.capitalize(name),
-                currentPrice: currentPrice,
+                currentPrice: this.getPriceString(quantity, currentPrice),
                 image: baseUrl + '/storage/' + image,
-                isDiscounted: currentPrice != standardPrice
+                isDiscounted: quantity && currentPrice != standardPrice
             }
         },
         methods: {
             capitalize(soneString) {
                 return soneString.charAt(0).toUpperCase() + soneString.slice(1)
             },
-            handleOnClick() {
-                return this.$emit('fromCard', {'cakeType': this.props})
+            getPriceString(quantity, price) {
+                return quantity ? price + ' €' : 'Scorte esaurite'
             },
+            handleOnClick() {
+                return this.$emit('fromCard', {'cakeType': this.getDataforRecipe()})
+            },
+            getDataforRecipe() {
+                return {
+                    name: this.name,
+                    currentPrice: this.currentPrice,
+                    image: this.image,
+                    ingredients: this.props.ingredients,
+                    quantity: this.props.quantity
+                }
+            }
         },
         components: { discountRibbon }
     };

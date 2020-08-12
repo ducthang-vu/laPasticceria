@@ -1964,23 +1964,36 @@ var apiUrl = baseUrl + '/api/cake_type';
     var _this$props = this.props,
         name = _this$props.name,
         currentPrice = _this$props.currentPrice,
+        quantity = _this$props.quantity,
         standardPrice = _this$props.standardPrice,
         image = _this$props.image;
     return {
       name: this.capitalize(name),
-      currentPrice: currentPrice,
+      currentPrice: this.getPriceString(quantity, currentPrice),
       image: baseUrl + '/storage/' + image,
-      isDiscounted: currentPrice != standardPrice
+      isDiscounted: quantity && currentPrice != standardPrice
     };
   },
   methods: {
     capitalize: function capitalize(soneString) {
       return soneString.charAt(0).toUpperCase() + soneString.slice(1);
     },
+    getPriceString: function getPriceString(quantity, price) {
+      return quantity ? price + ' €' : 'Scorte esaurite';
+    },
     handleOnClick: function handleOnClick() {
       return this.$emit('fromCard', {
-        'cakeType': this.props
+        'cakeType': this.getDataforRecipe()
       });
+    },
+    getDataforRecipe: function getDataforRecipe() {
+      return {
+        name: this.name,
+        currentPrice: this.currentPrice,
+        image: this.image,
+        ingredients: this.props.ingredients,
+        quantity: this.props.quantity
+      };
     }
   },
   components: {
@@ -2133,8 +2146,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
-var baseUrl = window.location.protocol + "//" + window.location.host;
 var colors = ['#74BDC7', '#AAD7DA', '#F099C6', '#92A7DA', '#F5EFB0'];
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2148,25 +2161,25 @@ var colors = ['#74BDC7', '#AAD7DA', '#F099C6', '#92A7DA', '#F5EFB0'];
         currentPrice = _this$props.currentPrice,
         image = _this$props.image,
         ingredients = _this$props.ingredients,
-        standardPrice = _this$props.standardPrice;
+        quantity = _this$props.quantity;
     return {
-      name: this.capitalize(name),
-      currentPrice: currentPrice,
-      image: baseUrl + '/storage/' + image,
-      ingredients: ingredients,
-      isDiscounted: currentPrice == standardPrice,
       bgColor: {
         background: colors[Math.random() * 5 | 0]
-      }
+      },
+      name: name,
+      currentPrice: currentPrice,
+      image: image,
+      ingredients: ingredients,
+      quantity: quantity
     };
   },
   methods: {
-    capitalize: function capitalize(soneString) {
-      return soneString.charAt(0).toUpperCase() + soneString.slice(1);
-    },
     handleOnclick: function handleOnclick() {
       return this.$emit('fromRecipe');
     }
+  },
+  mounted: function mounted() {
+    console.log(this.props);
   },
   components: {
     discountRibbon: _discountRibbon__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -38696,7 +38709,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("p", { staticClass: "layover__price" }, [
-            _vm._v(_vm._s(_vm.currentPrice) + " €")
+            _vm._v(_vm._s(_vm.currentPrice))
           ])
         ])
       ]),
@@ -38901,9 +38914,13 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "recipe__description__inner" }, [
-          _c("h1", [_vm._v(_vm._s(_vm.capitalize(_vm.name)))]),
+          _c("h1", [_vm._v(_vm._s(_vm.name))]),
           _vm._v(" "),
-          _c("h3", [_vm._v(" " + _vm._s(_vm.currentPrice) + " €")]),
+          _c("h3", [_vm._v(" " + _vm._s(_vm.currentPrice) + " ")]),
+          _vm._v(" "),
+          _vm.quantity
+            ? _c("p", [_vm._v("Unità in vendita: " + _vm._s(_vm.quantity))])
+            : _vm._e(),
           _vm._v(" "),
           _c("h2", { staticClass: "mt-4" }, [_vm._v("Ingredienti:")]),
           _vm._v(" "),

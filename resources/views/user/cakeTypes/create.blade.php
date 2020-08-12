@@ -36,6 +36,7 @@
                         id="name"
                         maxlength="60"
                         placeholder="Nome della ricetta"
+                        value="{{ old('name')}}"
                     >
                 </div>
                 <div class="form-group">

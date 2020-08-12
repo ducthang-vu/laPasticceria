@@ -5,8 +5,9 @@
         </div>
         <section class="recipe__description p-5 d-flex text-center" :style="bgColor">
             <div class="recipe__description__inner">
-                <h1>{{ capitalize(name) }}</h1>
-                <h3> {{ currentPrice }} €</h3>
+                <h1>{{ name }}</h1>
+                <h3> {{ currentPrice }} </h3>
+                <p v-if="quantity">Unità in vendita: {{ quantity }}</p>
                 <h2 class="mt-4">Ingredienti:</h2>
                 <ul class="text-left d-inline-block">
                     <li v-for="ingredient in ingredients"
@@ -26,7 +27,6 @@
 <script>
     import discountRibbon from './discountRibbon'
 
-    const baseUrl = window.location.protocol + "//" + window.location.host
     const colors = ['#74BDC7', '#AAD7DA', '#F099C6', '#92A7DA', '#F5EFB0']
 
     export default {
@@ -36,23 +36,23 @@
             }
         },
         data() {
-            const { name, currentPrice, image, ingredients, standardPrice } = this.props
+            const { name, currentPrice, image, ingredients, quantity } = this.props
             return {
-                name: this.capitalize(name),
+                bgColor: {background: colors[Math.random() * 5 | 0]},
+                name: name,
                 currentPrice: currentPrice,
-                image: baseUrl + '/storage/' + image,
+                image: image,
                 ingredients: ingredients,
-                isDiscounted: currentPrice == standardPrice,
-                bgColor: {background: colors[Math.random() * 5 | 0]}
+                quantity: quantity
             }
         },
         methods: {
-            capitalize(soneString) {
-                return soneString.charAt(0).toUpperCase() + soneString.slice(1)
-            },
             handleOnclick() {
                 return this.$emit('fromRecipe')
             }
+        },
+        mounted() {
+            console.log(this.props)
         },
         components: { discountRibbon }
     }
