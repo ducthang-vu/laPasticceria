@@ -1,3 +1,16 @@
 .main-header {
+    .nav-link.active {
+        position: relative;
+    }
 
+    .nav-link.active::after{
+        content: '';
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        height: 2px;
+        width: 90%;
+        margin-left: 5%;
+        background: $pink;
+    }
 }

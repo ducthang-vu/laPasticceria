@@ -20,19 +20,29 @@
                     <ul class="navbar-nav ml-auto">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.home')  }}">Home</a>
+                                <a
+                                    class="@if(Route::currentRouteNamed('user.home')) active @endif nav-link "
+                                    href="{{ route('user.home')  }}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">Esplora</a>
+                                <a
+                                    class="@if(Route::currentRouteNamed('home')) active @endif nav-link "
+                                    href="{{ route('home') }}">Esplora</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.cake_types.index')  }}">Ricettario</a>
+                                <a
+                                    class="@if(preg_match( '/^user.cake_types/', Route::currentRouteName())) active @endif nav-link "
+                                    href="{{ route('user.cake_types.index')  }}">Ricettario</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.cakes.index')  }}">Invetario</a>
+                                <a
+                                    class="@if(preg_match( '/^user.cakes/', Route::currentRouteName())) active @endif nav-link "
+                                    href="{{ route('user.cakes.index')  }}">Invetario</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.ingredients.index')  }}">Ingredienti</a>
+                                <a
+                                    class="@if(preg_match( '/^user.ingredients/', Route::currentRouteName())) active @endif nav-link "
+                                    href="{{ route('user.ingredients.index')  }}">Ingredienti</a>
                             </li>
                         @endauth
                         <!-- Authentication Links -->

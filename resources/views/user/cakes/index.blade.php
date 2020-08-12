@@ -1,8 +1,35 @@
 @extends('layouts.layout_base')
 
 @section('main-content')
-    <div class="user-cakes-index-page container">
-        <h1 class="page-title col-md-8 m-auto text-center mb-5">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if(session('cakeCreatedList'))
+        <div class="alert alert-success">
+            <p>Sono state aggiunte nell'invetario le seguenti torte:</p>
+            <ul>
+                @foreach (session('cakeCreatedList') as $cakeId)
+                    <li># {{ $cakeId  }}</li>
+                @endforeach
+            </div>
+        </ul>
+    @endif
+
+    @if(session('cakeDeleted'))
+        <div class="alert alert-success">
+            <p>La torta # {{ session('cakeDeleted')[0] }} del tipo " {{ session('cakeDeleted')[1] }}" è stata rimossa dall'invetario.</p>
+        </ul>
+    @endif
+
+    <div class="user-cakes-index-page container pt-3">
+        <h1 class="page-title col-md-8 m-auto text-center mb-5 mt-5">
             <span>Inventario: torte</span>
             <a class="btn btn-success" href="{{ Route('user.cakes.create') }}" role="button">Nuove torte</a>
         </h1>

@@ -10910,6 +10910,16 @@ a.text-dark:focus {
 
 /* Large desktops (large desktops, 1200px and up) */
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body main {
+  flex-grow: 1;
+}
+
 .form-bg {
   background: seashell;
 }
@@ -10925,6 +10935,21 @@ a.text-dark:focus {
 .main-content {
   margin-top: 55px;
   background-color: snow;
+}
+
+.main-header .nav-link.active {
+  position: relative;
+}
+
+.main-header .nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  height: 2px;
+  width: 90%;
+  margin-left: 5%;
+  background: #f66d9b;
 }
 
 .main-footer {

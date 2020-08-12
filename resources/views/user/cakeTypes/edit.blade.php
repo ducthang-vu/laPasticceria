@@ -11,7 +11,7 @@
         </div>
     @endif
     <div class="user-cakesTypes-edit-Page container">
-        <header class="page-navigation-header ml-3 mb-2">
+        <header class="page-navigation-header ml-3 mb-2 mt-5">
             <a class="anchor" href="{{ route('user.cake_types.index') }}">Ricettario</a>
             <i class="fas fa-chevron-right"></i>
             <span>Aggiungi nuova ricetta</span>

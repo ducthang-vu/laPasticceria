@@ -10,8 +10,9 @@
             </ul>
         </div>
     @endif
+    
     <div class="user-cakes-create-page container">
-        <header class="page-navigation-header ml-5 mb-4">
+        <header class="page-navigation-header ml-5 mb-4 mt-5">
             <a class="anchor" href="{{ route('user.cakes.index') }}">Torte</a>
             <i class="fas fa-chevron-right"></i>
             <span>Aggiungi nuove torte</span>

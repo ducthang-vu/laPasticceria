@@ -1,8 +1,20 @@
 @extends('layouts.layout_base')
 
 @section('main-content')
+    @if(session('cakeTypeSaved'))
+        <div class="alert alert-success">
+            <p>La ricetta "{{ session('cakeTypeSaved') }}" è stata aggiunta al ricettario.</p>
+        </ul>
+    @endif
+
+    @if(session('cakeTypeUpdated'))
+        <div class="alert alert-success">
+            <p>La ricetta "{{ session('cakeTypeUpdated') }}" è stata aggiornata con nuovi dati.</p>
+        </ul>
+    @endif
+
     <div class="user-cakeType-show-page container">
-        <header class="page-navigation-header ml-3 mb-2">
+        <header class="page-navigation-header ml-3 mb-2 mt-5">
             <a class="anchor" href="{{ route('user.cake_types.index') }}">Ricettario</a>
             <i class="fas fa-chevron-right"></i>
             <span>Torta: {{ $cakeType->getNameCapitalized() }}</span>

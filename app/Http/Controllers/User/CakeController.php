@@ -63,8 +63,8 @@ class CakeController extends Controller
 
     public function destroy(Cake $cake)
     {
-        $id = $cake->id;
+        $cakeData= [$cake->id, $cake->type];
         return $cake->delete() ?
-            redirect()->route('user.cakes.index')->with('cakeDeleted', $id) : abort('500');
+            redirect()->route('user.cakes.index')->with('cakeDeleted', $cakeData) : abort('500');
     }
 }

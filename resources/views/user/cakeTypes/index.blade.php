@@ -10,8 +10,15 @@
             </ul>
         </div>
     @endif
-    <div class="user-cakeTypes-index-page container">
-        <h1 class="page-title col-md-10 m-auto text-center mb-3">
+
+    @if(session('cakeTypeDeleted'))
+        <div class="alert alert-success">
+            <p>La ricetta "{{ session('cakeTypeDeleted') }}"" è stata rimossa dal ricettario.</p>
+        </ul>
+    @endif
+
+    <div class="user-cakeTypes-index-page container pt-3">
+        <h1 class="page-title col-md-10 m-auto text-center mb-4 mt-5">
             <span>Ricettario</span>
             <a class="btn btn-success" href="{{ Route('user.cake_types.create') }}" role="button">Aggiungi nuova ricetta</a>
         </h1>

@@ -2,6 +2,22 @@
 
 @section('main-content')
     <div class="user-ingredients-index-page container mt-5">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if(session('ingredientSaved'))
+            <div class="alert alert-success">
+                <p>L'ingrediente {{ session('ingredientSaved') }} è stato salvato. Potrai usarlo per le tue ricette.</p>
+            </div>
+        @endif
+        
         <h1 class="text-center mt-5">Ingredienti usati nelle ricette</h1>
         <div class="d-flex page-content">
             <table class="table table-hover col-md-3 mt-2">
