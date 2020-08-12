@@ -70,3 +70,9 @@ A public Api (url: api/cake_type) is used to fetch the data.
 
 Authenticated user can access their personal accounts and perform CRUD operations. Registration of new users is not possible.
 
+### CRUD ###
+The application allows registered users to manage the following resources with CRUD functions:
+- ingredient (not update)
+- cake_type 
+- cake (not update)
+
