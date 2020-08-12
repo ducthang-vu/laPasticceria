@@ -19,6 +19,7 @@ class Cake_type extends JsonResource
             'currentPrice'=> $this->getPriceLowest(),
             'standardPrice' => $this->getPriceFormatted(),
             'image' => $this->image,
+            'quantity' => $this->getQuantityOnSale(),
             'ingredients' => $this->getIncredientsNameList()
         ];
     }
