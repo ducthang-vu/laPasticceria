@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
         foreach (['Luana', 'Maria'] as $name) {
             $newUser = new User();
             $newUser->name = $name;
-            $newUser->email = $name . '@mail.com';
+            $newUser->email = strtolower($name) . '@mail.com';
             $newUser->password = bcrypt('prova');
             $newUser->save();
         }
