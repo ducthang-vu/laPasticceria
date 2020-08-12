@@ -1,0 +1,33 @@
+.main-footer {
+    background-color: white;
+    .head-row {
+        .head-row__social-list > li {
+            display: inline-block;
+            margin: 15px;
+
+            a,
+            a:hover,
+            a:visited {
+                text-decoration: none;
+            }
+
+            a {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 150%;
+                width: 35px;
+                height: 35px;
+                color: purple;
+            }
+        }
+    }
+
+    .row-last {
+        p {
+            flex-basis: 100%;
+            font-size: 80%;
+            font-style: italic;
+        }
+    }
+}

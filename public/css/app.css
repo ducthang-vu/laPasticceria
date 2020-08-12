@@ -10927,6 +10927,37 @@ a.text-dark:focus {
   background-color: snow;
 }
 
+.main-footer {
+  background-color: white;
+}
+
+.main-footer .head-row .head-row__social-list > li {
+  display: inline-block;
+  margin: 15px;
+}
+
+.main-footer .head-row .head-row__social-list > li a,
+.main-footer .head-row .head-row__social-list > li a:hover,
+.main-footer .head-row .head-row__social-list > li a:visited {
+  text-decoration: none;
+}
+
+.main-footer .head-row .head-row__social-list > li a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 150%;
+  width: 35px;
+  height: 35px;
+  color: purple;
+}
+
+.main-footer .row-last p {
+  flex-basis: 100%;
+  font-size: 80%;
+  font-style: italic;
+}
+
 .page-navigation-header {
   display: none;
 }
