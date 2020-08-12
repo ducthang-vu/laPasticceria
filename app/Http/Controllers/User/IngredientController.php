@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Ingredient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class IngredientController extends Controller
 {
@@ -50,6 +51,10 @@ class IngredientController extends Controller
      */
     public function destroy(Ingredient $ingredient)
     {
+        if ($ingredient->cakeTypes->isNotEmpty()) {
+            return back()->withErrors("L'ingrediente " . $ingredient->name . " è usato in alcune ricette. Impossibile procedere con l'eliminazione");
+        }
+
         $ingedientName = $ingredient->name;
         $ingredient->cakeTypes()->detach();
         return $ingredient->delete() ?
