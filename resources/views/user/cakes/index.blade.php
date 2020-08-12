@@ -49,7 +49,7 @@
                     <tr class="table-row @if($cake->isWasted()) wasted  @endif">
                         <th scope="row" class="text-center">{{ $cake->id }}</th>
                         <th scope="row" class="text-center">
-                            <a href="{{ route('user.cake_type.id', $cake->cake_type_id) }}">{{ $cake->getType() }}
+                            <a href="{{ route('user.cake_type.id', $cake->cake_type_id) }}">{{ $cake->getTypeName() }}
                             </a>
                         </th>
                         <td class="text-center">{{ Carbon\Carbon::parse($cake->created_at)->format('d/m/Y h:m') }}</td>

@@ -1970,7 +1970,7 @@ var apiUrl = baseUrl + '/api/cake_type';
       name: this.capitalize(name),
       currentPrice: currentPrice,
       image: baseUrl + '/storage/' + image,
-      isDiscounted: currentPrice == standardPrice
+      isDiscounted: currentPrice != standardPrice
     };
   },
   methods: {

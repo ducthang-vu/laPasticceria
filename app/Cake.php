@@ -22,11 +22,23 @@ class Cake extends Model
         return Carbon::parse($this->created_at)->lessThan(Carbon::now()->subDays(3));
     }
 
-    public function getType() {
+    public function getTypeName() {
         return Cake_type::find($this->cake_type_id)->getNameCapitalized();
     }
 
     public function getPrice() {
-        return Cake_type::find($this->cake_type_id)->getPriceFormatted();
+        $created_at = Carbon::parse($this->created_at);
+        $cakeType = Cake_type::find($this->cake_type_id);
+
+        if ($created_at->greaterThan(Carbon::now()->subDays(1))) {
+            return $cakeType->getPriceFormatted();
+        }
+        if ($created_at->greaterThan(Carbon::now()->subDays(2))) {
+            return $cakeType->getPriceFormatted(1);
+        }
+        if ($created_at->greaterThan(Carbon::now()->subDays(3))) {
+            return $cakeType->getPriceFormatted(2);
+        }
+        return 0;
     }
 }
