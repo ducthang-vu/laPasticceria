@@ -16,7 +16,7 @@
             <p>Sono state aggiunte nell'invetario le seguenti torte:</p>
             <ul>
                 @foreach (session('cakeCreatedList') as $cakeId)
-                    <li># {{ $cakeId  }}</li>
+                    <li># <strong>{{ $cakeId }}</strong></li>
                 @endforeach
             </div>
         </ul>
@@ -25,7 +25,7 @@
     @if(session('cakeDeleted'))
         <div class="alert alert-success">
             <p>La torta # {{ session('cakeDeleted')[0] }} del tipo " {{ session('cakeDeleted')[1] }}" è stata rimossa dall'invetario.</p>
-        </ul>
+        </div>
     @endif
 
     <div class="user-cakes-index-page container pt-3">

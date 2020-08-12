@@ -3,14 +3,14 @@
 @section('main-content')
     @if(session('cakeTypeSaved'))
         <div class="alert alert-success">
-            <p>La ricetta "{{ session('cakeTypeSaved') }}" è stata aggiunta al ricettario.</p>
+            <p>La ricetta <strong>{{ session('cakeTypeSaved') }}</strong>" è stata aggiunta al ricettario.</p>
         </ul>
     @endif
 
     @if(session('cakeTypeUpdated'))
         <div class="alert alert-success">
-            <p>La ricetta "{{ session('cakeTypeUpdated') }}" è stata aggiornata con nuovi dati.</p>
-        </ul>
+            <p>La ricetta <strong>{{ session('cakeTypeUpdated') }}"</strong> è stata aggiornata con nuovi dati.</p>
+        </div>
     @endif
 
     <div class="user-cakeType-show-page container">

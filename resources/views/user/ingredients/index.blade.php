@@ -14,10 +14,16 @@
 
         @if(session('ingredientSaved'))
             <div class="alert alert-success">
-                <p>L'ingrediente {{ session('ingredientSaved') }} è stato salvato. Potrai usarlo per le tue ricette.</p>
+                <p>L'ingrediente <strong>{{ session('ingredientSaved') }}</strong> è stato salvato. Potrai usarlo per le tue ricette.</p>
             </div>
         @endif
-        
+
+        @if(session('ingredientDeleted'))
+            <div class="alert alert-success">
+                <p>L'ingrediente <strong>{{ session('ingredientDeleted') }}</strong> è rimosso. Non potrai più usarlo per le tue ricette.</p>
+            </div>
+        @endif
+
         <h1 class="text-center mt-5">Ingredienti usati nelle ricette</h1>
         <div class="d-flex page-content">
             <table class="table table-hover col-md-3 mt-2">

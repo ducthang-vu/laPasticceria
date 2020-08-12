@@ -13,8 +13,8 @@
 
     @if(session('cakeTypeDeleted'))
         <div class="alert alert-success">
-            <p>La ricetta "{{ session('cakeTypeDeleted') }}"" è stata rimossa dal ricettario.</p>
-        </ul>
+            <p>La ricetta <strong>{{ session('cakeTypeDeleted') }}</strong> è stata rimossa dal ricettario.</p>
+        </div>
     @endif
 
     <div class="user-cakeTypes-index-page container pt-3">
