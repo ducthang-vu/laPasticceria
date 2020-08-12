@@ -67,15 +67,15 @@ Infine, facendo accesso all'area privata, nella home dell'area privata (url: /us
 
 
 ## Caratteristiche
-L'applicazione ha un'unica homepage che può essere visitato da utenti registrati e non registrati.
+L'applicazione ha un'unica homepage che può essere visitata da utenti registrati e non registrati.
 
-L'homepage è stata costruita principalmente usando il framework JavaScript Vue.js.
+L'homepage è stata costruita principalmente usando il framework JavaScript **Vue.js**.
 
 Al caricamento della pagina, i dati sono reperiti con una chiamata Ajax attraverso un API pubblica all'url: api/cake_type.
 
 Nell'homepage, sono mostrate le varie tipologie di dolci con il proprio prezzo e quantità. Per ogni tipologia di dolce è mostrato il prezzo più basso (cioè della singola torta più vecchia). Le torte scadute (più vecchie di tre giorni) non sono invece computate.
 
-L'utente autenticato, può, facendo accesso all'area privata vedere per ogni tipo di torta la quantità totale in vendita, la quantità creata nelle ultime 24, 48 e 72 ore con il relativo prezzo.
+L'utente autenticato, può, facendo accesso all'area privata, vedere per ogni tipo di torta la quantità totale in vendita, la quantità creata nelle ultime 24, 48 e 72 ore con il relativo prezzo.
 Gli utenti autenticati possono inoltre effettuare le classiche operazioni CRUD facendo accesso all'area privata. 
 
 Non è prevista la registrazione di nuovi utenti.
@@ -103,7 +103,7 @@ php artisan route:list
 
 per ottenere la lista di tutte le rotte, con i controller di riferimento e il tipo di richiesta eseguito. 
 
-I model sono salvati in nella cartella app.
+I model sono salvati nella cartella app.
 
 I controller si trovano in app\Http\Controllers. I controller dentro la cartella User gestiscono le rotte che richiedono l'autenticazione dell'utente.
 
