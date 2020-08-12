@@ -1,5 +1,7 @@
 <?php
 
+use App\Cake_type;
+use App\Http\Resources\Cake_type as Cake_typeResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/cake_type', function () {
+    return Cake_typeResource::collection(Cake_type::all());
 });

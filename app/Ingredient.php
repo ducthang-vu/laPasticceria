@@ -26,6 +26,10 @@ class Ingredient extends Model
         return self::where('name', $name)->first()['id'];
     }
 
+    public function getNameCapitalized() {
+        return ucfirst($this->name);
+    }
+
     public function getSlug() {
         return str_replace(' ', '-', $this->name);
     }

@@ -1,5 +1,5 @@
 @extends('layouts.layout_base')
 
 @section('main-content')
-    <h1>Hello</h1>
+    <div class="root-vue-component" id="root"></div>
 @endsection

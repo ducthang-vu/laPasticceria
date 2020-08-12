@@ -1,0 +1,25 @@
+.user-ingredients-index-page {
+    .page-content {
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        & > * {
+            margin: 25px auto;
+            flex-basis: 100%
+        }
+
+        .form-wrapper__title > * {
+            background-color: $form-bg;
+        }
+    }
+}
+
+@include tablet {
+    .user-ingredients-index-page {
+        .page-content {
+            & > * {
+                flex-basis: 50%
+            }
+        }
+    }
+}

@@ -10983,6 +10983,10 @@ a.text-dark:focus {
   right: 2%;
 }
 
+.user-cakes-index-page .table-row.wasted {
+  background-color: #ffed4a;
+}
+
 .user-cakes-create-page a {
   text-decoration: none;
   cursor: pointer;
@@ -11039,5 +11043,25 @@ a.text-dark:focus {
   height: 350px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.user-ingredients-index-page .page-content {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.user-ingredients-index-page .page-content > * {
+  margin: 25px auto;
+  flex-basis: 100%;
+}
+
+.user-ingredients-index-page .page-content .form-wrapper__title > * {
+  background-color: seashell;
+}
+
+@media (min-width: 768px) {
+  .user-ingredients-index-page .page-content > * {
+    flex-basis: 50%;
+  }
 }
 

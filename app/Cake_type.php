@@ -53,6 +53,10 @@ class Cake_type extends Model
         return self::where('slug', $slug)->first()['id'];
     }
 
+    public function getIncredientsNameList() {
+        return $this->ingredients->map(function ($model) {return $model->name;});
+    }
+
     public function getNameCapitalized() {
         return ucfirst($this->name);
     }
@@ -64,6 +68,19 @@ class Cake_type extends Model
 
     public function getPriceFormatted($discountDays=null) {
         return str_replace(".",",", number_format($this->getPriceAsNumber($discountDays), 2));
+    }
+
+    public function getPriceLowest() {
+        if ($this->getQuantityOnSaleMadeTwoDaysAgo()) {
+            return $this->getPriceFormatted(2);
+        }
+        if ($this->getQuantityOnSaleMadeYesterday()) {
+            return $this->getPriceFormatted(1);
+        }
+        if ($this->getQuantityOnSaleMadeToday()) {
+            return $this->getPriceFormatted();
+        }
+        return 0;
     }
 
     public function getQuantityOnSale() {

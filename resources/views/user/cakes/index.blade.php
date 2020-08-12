@@ -3,9 +3,10 @@
 @section('main-content')
     <div class="user-cakes-index-page container">
         <h1 class="page-title col-md-8 m-auto text-center mb-5">
-            <span>Le torte</span>
+            <span>Inventario: torte</span>
             <a class="btn btn-success" href="{{ Route('user.cakes.create') }}" role="button">Nuove torte</a>
         </h1>
+        <p class="col-md-8 m-auto">I righi in giallo rappresentano torte scadute. Considera di rimooverli dall'invetario</p>
         <table class="table table-hover col-md-8 m-auto mt-2">
             <thead class="thead-light">
                 <tr>
@@ -18,7 +19,7 @@
             </thead>
             <tbody>
                 @foreach ($cakes as $cake)
-                    <tr>
+                    <tr class="table-row @if($cake->isWasted()) wasted  @endif">
                         <th scope="row" class="text-center">{{ $cake->id }}</th>
                         <th scope="row" class="text-center">
                             <a href="{{ route('user.cake_type.id', $cake->cake_type_id) }}">{{ $cake->getType() }}

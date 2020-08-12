@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Cake_type;
+use Carbon\Carbon;
 
 class Cake extends Model
 {
@@ -15,6 +16,10 @@ class Cake extends Model
     public function type()
     {
         return $this->belongsTo('App\Cake_type');
+    }
+
+    public function isWasted() {
+        return Carbon::parse($this->created_at)->lessThan(Carbon::now()->subDays(3));
     }
 
     public function getType() {
