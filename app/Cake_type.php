@@ -44,7 +44,10 @@ class Cake_type extends Model
     /*
      * UTILITIES
      */
-
+    /**
+     * Getting a list of all slug
+     *
+     */
     static public function getAllSlugs() {
         return array_column(self::all('slug')->toArray(), 'slug');
     }
@@ -70,6 +73,10 @@ class Cake_type extends Model
         return str_replace(".",",", number_format($this->getPriceAsNumber($discountDays), 2));
     }
 
+    /**
+     * Getting the lowest price among the cake of the same type on sale.
+     *
+     */
     public function getPriceLowest() {
         if ($this->getQuantityOnSaleMadeTwoDaysAgo()) {
             return $this->getPriceFormatted(2);
@@ -82,7 +89,10 @@ class Cake_type extends Model
         }
         return 0;
     }
-
+    /**
+     * Getting the quantity of cake on sale of the same cake_type. Cakes created more than three ago are not computed.
+     *
+     */
     public function getQuantityOnSale() {
         return $this->cakes->where('created_at', '>=', Carbon::now()->subDays(3))->count();
     }
@@ -104,6 +114,10 @@ class Cake_type extends Model
             ->count();
     }
 
+    /**
+     * Getting the number of cake of the same cake_type created more than three days ago, but yet not deleted from the database.
+     *
+     */
     public function getQuantityWasted() {
         return $this->cakes->where('created_at', '<', Carbon::now()->subDays(3))->count();
     }
