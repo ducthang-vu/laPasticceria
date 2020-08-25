@@ -108,3 +108,6 @@ I model sono salvati nella cartella app.
 I controller si trovano in app\Http\Controllers. I controller dentro la cartella User gestiscono le rotte che richiedono l'autenticazione dell'utente.
 
 Per le migrazioni e i seeding, consultare la cartella database.
+
+## Anteprima ##
+ ![homepage](readme_gif/gif1.gif)
