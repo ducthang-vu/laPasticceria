@@ -23,10 +23,10 @@ gli ingredienti indicati dalla ricetta.
 ## Minimum requirements
 laPasticceria is based on the Php **Laravel** framework.
 
-Composer 1.10.7
-PHP 7.2.5
-MySQL 10.4.11
-Node.js 13.12.0
+Composer 1.10.7  
+PHP 7.2.5  
+MySQL 10.4.11  
+Node.js 13.12.0  
 
 
 ## Use
