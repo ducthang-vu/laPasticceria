@@ -15,7 +15,6 @@
     import discountRibbon from './discountRibbon'
 
     const baseUrl = window.location.protocol + "//" + window.location.host
-    const apiUrl = baseUrl + '/api/cake_type'
 
 export default {
         props: {

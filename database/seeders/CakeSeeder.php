@@ -1,6 +1,10 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
+use App\Models\Cake;
+
 
 class CakeSeeder extends Seeder
 {
@@ -11,6 +15,6 @@ class CakeSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Cake::class, 75)->create();
+        Cake::factory()->count(50)->create();
     }
 }

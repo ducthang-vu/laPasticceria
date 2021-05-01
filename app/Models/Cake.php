@@ -1,13 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Cake_type;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Cake_type;
 use Carbon\Carbon;
 
 class Cake extends Model
 {
+    use HasFactory;
     //
 
     /**
@@ -23,12 +25,12 @@ class Cake extends Model
     }
 
     public function getTypeName() {
-        return Cake_type::find($this->cake_type_id)->getNameCapitalized();
+        return CakeType::find($this->cake_type_id)->getNameCapitalized();
     }
 
     public function getPrice() {
         $created_at = Carbon::parse($this->created_at);
-        $cakeType = Cake_type::find($this->cake_type_id);
+        $cakeType = CakeType::find($this->cake_type_id);
 
         if ($created_at->greaterThan(Carbon::now()->subDays(1))) {
             return $cakeType->getPriceFormatted();

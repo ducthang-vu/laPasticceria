@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Cake_type extends JsonResource
+class CakeTypeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,6 +14,7 @@ class Cake_type extends JsonResource
      */
     public function toArray($request)
     {
+        //return parent::toArray($request);
         return [
             'name' => $this->name,
             'currentPrice'=> $this->getPriceLowest(),

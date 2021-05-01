@@ -1,7 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use App\Ingredient;
+use App\Models\Ingredient;
 
 class IngredientSeeder extends Seeder
 {

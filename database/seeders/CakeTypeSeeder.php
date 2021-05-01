@@ -1,10 +1,12 @@
 <?php
 
-use App\Cake_type;
+namespace Database\Seeders;
+
+use App\Models\CakeType;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 
-class Cake_typeSeeder extends Seeder
+class CakeTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +16,7 @@ class Cake_typeSeeder extends Seeder
     public function run(Faker $faker)
     {
         foreach (array_keys(config('seeding_data')) as $type) {
-            $newCakeType = new Cake_type();
+            $newCakeType = new CakeType();
             $newCakeType->name = $type;
             $newCakeType->price = $faker->numberBetween($min = 50, $max = 200) * 10;
             $newCakeType->slug = str_replace(' ', '-', $type);

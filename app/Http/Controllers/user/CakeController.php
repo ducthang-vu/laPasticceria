@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\user;
 
-use App\Cake;
-use App\Cake_type;
+use App\Models\Cake;
+use App\Models\CakeType;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class CakeController extends Controller
      * Validation rules
      */
     private function validationRules() {
-        return array_fill_keys(Cake_type::getAllSlugs(), 'required|integer|min:0|max:5000');
+        return array_fill_keys(CakeType::getAllSlugs(), 'required|integer|min:0|max:5000');
     }
 
     /**
@@ -34,7 +34,7 @@ class CakeController extends Controller
      */
     public function create()
     {
-        $cakeTypes = Cake_type::all();
+        $cakeTypes = CakeType::all();
         return view('user.cakes.create', compact('cakeTypes'));
     }
 
@@ -48,10 +48,10 @@ class CakeController extends Controller
     {
         $request->validate($this->validationRules());
         $created = [];
-        foreach(Cake_type::getAllSlugs() as $slug) {
+        foreach(CakeType::getAllSlugs() as $slug) {
             for ($i = 0; $i < $request->all()[$slug] ; $i++) {
                 $newCake = new Cake;
-                $newCake->cake_type_id = Cake_type::getIdBySlug($slug);
+                $newCake->cake_type_id = CakeType::getIdBySlug($slug);
                 if ($newCake->save()) {
                     $created[] = $newCake->id;
                 };

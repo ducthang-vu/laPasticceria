@@ -1,7 +1,7 @@
 <?php
 
-use App\Cake_type;
-use App\Ingredient;
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             IngredientSeeder::class,
-            Cake_typeSeeder::class,
-            Cake_typeIngredientSeeder::class,
+            CakeTypeSeeder::class,
+            CakeTypeIngredientSeeder::class,
             CakeSeeder::class,
         ]);
     }

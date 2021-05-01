@@ -1,12 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-use PhpParser\Node\Expr\Cast\Int_;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Cake_type extends Model
+
+class CakeType extends Model
 {
     protected $fillable = [
         'name',
@@ -30,7 +31,7 @@ class Cake_type extends Model
      */
     public function cakes()
     {
-        return $this->hasMany('App\Cake');
+        return $this->hasMany('App\Models\Cake');
     }
 
     /**
@@ -38,7 +39,7 @@ class Cake_type extends Model
      */
     public function ingredients()
     {
-        return $this->belongsToMany('App\Ingredient')->withPivot('quantity');
+        return $this->belongsToMany('App\Models\Ingredient')->withPivot('quantity');
     }
 
     /*

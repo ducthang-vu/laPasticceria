@@ -1,11 +1,13 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use App\Cake_type;
-use App\Ingredient;
+use App\Models\CakeType;
+use App\Models\Ingredient;
 
 
-class Cake_typeIngredientSeeder extends Seeder
+class CakeTypeIngredientSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +16,7 @@ class Cake_typeIngredientSeeder extends Seeder
      */
     public function run()
     {
-        foreach (Cake_type::all() as $cakeType) {
+        foreach (CakeType::all() as $cakeType) {
             $recipeList = config('seeding_data')[$cakeType->name];
             foreach($recipeList as $ingredient) {   // Each $ingredient is [name, quantity]
                 $ingredientId = Ingredient::where('name', $ingredient[0])->first()->id;

@@ -70,9 +70,9 @@ Run migrations and seeding:
 php artisan migrate:fresh --seed
  ```
 
-You can run the last command multiple times; however, it is important that the images saved in storage /public/imagesSeeding are the same as those found in imagesSeeding (folder in the root of the project). If they are not, copy the photos from the last folder and paste them into the first ones.
+You can run the last command multiple times; however, it is important that the images saved in storage app/public/imagesSeeding are the same as those found in imagesSeeding (folder in the root of the project). If they are not, copy the photos from the last folder and paste them into the first ones.
 
-The seeding creates two users: Maria and Laura. You can access both private areas using as username: maria@mail.com or laura@mail.com, and 'test' (without quotes) as password.
+The seeding creates two users: Maria and Laura. You can access both private areas using as username: maria@mail.com or luana@mail.com, and 'test' (without quotes) as password.
 
 Finally, by accessing the private area, in the homepage (url: / user) you may consult further instructions.
 

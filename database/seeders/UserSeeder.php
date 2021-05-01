@@ -1,7 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use App\User;
+use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -16,7 +18,7 @@ class UserSeeder extends Seeder
             $newUser = new User();
             $newUser->name = $name;
             $newUser->email = strtolower($name) . '@mail.com';
-            $newUser->password = bcrypt('prova');
+            $newUser->password = bcrypt('test');
             $newUser->save();
         }
     }

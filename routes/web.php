@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\user\CakeController;
+use App\Http\Controllers\user\CakeTypeController;
+use App\Http\Controllers\user\IngredientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,12 +26,11 @@ Auth::routes(['register' => false]);
 
 Route::prefix('user')
     ->name('user.')
-    ->namespace('user')
     ->middleware('auth')
     ->group(function () {
-        Route::get('/', function() {return view('user.home');})->name('home');
-        Route::resource('cake_types', 'CakeTypeController')->parameters(['cake_types' => 'slug']);
-        Route::get('cake_types/id/{id}', 'CakeTypeController@redirectShow')->name('cake_type.id');
-        Route::resource('cakes', 'CakeController')->except(['edit', 'update', 'show']);
-        Route::resource('ingredients', 'IngredientController')->only(['index', 'store', 'destroy']);
+        Route::get('/', fn () => view('user.home'))->name('home');
+        Route::resource('cake_types', CakeTypeController::class)->parameters(['cake_types' => 'slug']);
+        Route::get('cake_types/id/{id}', [CakeTypeController::class, 'redirectShow'])->name('cake_type.id');
+        Route::resource('cakes', CakeController::class)->except(['edit', 'update', 'show']);
+        Route::resource('ingredients', IngredientController::class)->only(['index', 'store', 'destroy']);
     });

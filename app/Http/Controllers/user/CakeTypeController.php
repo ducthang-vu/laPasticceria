@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\user;
 
-use App\Cake_type;
-use App\Ingredient;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use App\Models\Ingredient;
+use App\Models\CakeType;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class CakeTypeController extends Controller
 {
@@ -31,7 +31,7 @@ class CakeTypeController extends Controller
     }
 
     private function searchCakeTypebySlug($slug) {
-        return Cake_type::where('slug', $slug)->firstOrFail();
+        return CakeType::where('slug', $slug)->firstOrFail();
     }
 
     private function validateRules($id=null)
@@ -55,7 +55,7 @@ class CakeTypeController extends Controller
     public function index()
     {
 
-        $cakeTypes = Cake_type::all();
+        $cakeTypes = CakeType::all();
         return view('user.cakeTypes.index', compact('cakeTypes'));
     }
 
@@ -66,7 +66,7 @@ class CakeTypeController extends Controller
      */
     public function create()
     {
-        $cakeTypes = Cake_type::all();
+        $cakeTypes = CakeType::all();
         $ingredients = Ingredient::all();
         return view('user.cakeTypes.create', compact('cakeTypes', 'ingredients'));
     }
@@ -86,7 +86,7 @@ class CakeTypeController extends Controller
 
         $data = $request->all();
 
-        $newCakeType = new Cake_type();
+        $newCakeType = new CakeType();
         $newCakeType->name = $data['name'];
         $newCakeType->price = $data['price'] * 100;
         $newCakeType->slug = str_replace(' ', '-', $data['name']);
@@ -187,7 +187,8 @@ class CakeTypeController extends Controller
     }
 
     public function redirectShow($id) {
-        $slug = Cake_type::find($id)->slug;
+        $slug = CakeType::find($id)->slug;
         return $this->show($slug);
     }
 }
+

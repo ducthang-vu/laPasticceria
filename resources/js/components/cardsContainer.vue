@@ -25,7 +25,7 @@
     import recipe from './recipe'
 
     const baseUrl = window.location.protocol + "//" + window.location.host
-    const apiUrl = baseUrl + '/api/cake_type'
+    const apiUrl = baseUrl + '/api/cakeType'
 
 export default {
         data() {

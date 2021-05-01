@@ -1,8 +1,7 @@
 <?php
 
-use App\Cake_type;
-use App\Http\Resources\Cake_type as Cake_typeResource;
-use Illuminate\Http\Request;
+use App\Models\CakeType;
+use App\Http\Resources\CakeTypeResource;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/cake_type', function () {
-    return Cake_typeResource::collection(Cake_type::all());
-});
+Route::get('/cakeType', fn () => CakeTypeResource::collection(CakeType::all()));
